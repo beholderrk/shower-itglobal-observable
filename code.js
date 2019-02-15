@@ -1,0 +1,11 @@
+getDataFromLocalMemory()
+  .skip(10)
+  .take(5)
+  .map(s => s + " transformed")
+  .forEach(s => console.log(`next => ${s}`))
+
+getDataFromNetwork()
+  .skip(10)
+  .take(5)
+  .map(s => s + " transformed")
+  .subscribe(s => console.log(`next => ${s}`))
