@@ -65,11 +65,65 @@
 
     <section class="slide">
         <h2>Iterator</h2>
+        <p>Это такой паттерн который позволяет последовательно обходить структуры данных.</p>
+        <p class="next">
+            <img src="pictures/iterator_pattern.png" width="100%">
+        </p>
+    </section>
+
+    <section class="slide">
+        <h2>Iterator, что взято</h2>
         <p>
             <img src="pictures/itarable_1.png" width="60%">
         </p>
         <p>
             <img src="pictures/observable_1.png" width="60%">
+        </p>
+    </section>
+
+    <section class="slide">
+        <h2>Место observable</h2>
+        <table>
+            <tr>
+                <td></td>
+                <td>Single items</td>
+                <td>Multiple items</td>
+            </tr>
+            <tr>
+                <td>Синхронно</td>
+                <td><code>T getData()</code></td>
+                <td><code>Iterable&lt;T&gt; getData()</code></td>
+            </tr>
+            <tr>
+                <td>Асинхронно</td>
+                <td><code>Future&lt;T&gt; getData()</code></td>
+                <td><code>Observable&lt;T&gt; getData()</code></td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide" id="rx-first-example">
+        <h2>Могущество в операторах</h2>
+        <pre>
+            <code class="next">const searchText$ = <mark>fromEvent</mark>(document.querySelector("input")).pipe(</code>
+            <code class="next">    <mark>map</mark>(event => event.target.value),</code>
+            <code class="next">    <mark>debounceTime</mark>(400),</code>
+            <code class="next">    <mark>distinctUntilChanged</mark>()</code>
+            <code class="next">);</code>
+            <code class="next">const users$ = searchText$.pipe(</code>
+            <code class="next">    <mark>switchMap</mark>(search => getJson(`/users/?q=${search}`))</code>
+            <code class="next">).subscribe();</code>
+        </pre>
+
+        <style>
+            #rx-first-example pre { font-size: 0.7em; }
+        </style>
+    </section>
+    
+    <section class="slide">
+        <h2>Могущество в операторах</h2>
+        <p>
+            <img src="pictures/switchmap.png" width="100%">
         </p>
     </section>
 
