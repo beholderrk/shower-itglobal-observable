@@ -115,10 +115,14 @@
         </p>
     </section>
 
+    <section class="slide">
+        <h2 class="shout">Операторы</h2>
+    </section>
+
     <section class="slide" id="rx-first-example">
         <h2>Могущество в операторах</h2>
         <pre>
-            <code class="next">const searchUsers$ = <mark>fromEvent</mark>(document.querySelector("input"), "change")</code>
+            <code>const searchUsers$ = <mark>fromEvent</mark>(document.querySelector("input"), "change")</code>
             <code class="next">.pipe(</code>
             <code class="next">    <mark>map</mark>(event => event.target.value),</code>
             <code class="next">    <mark>debounceTime</mark>(400),</code>
@@ -140,10 +144,45 @@
         </p>
     </section>
 
+    <section class="slide">
+        <h2>Применение bufferToggle</h2>
+        <p>
+            <img src="pictures/bufferToggle.PNG">
+        </p>
+    </section>
+    
+    <section class="slide">
+        <h2>Применение bufferToggle</h2>
+        <p>
+            <img src="pictures/bufferToggle_real.png" width="100%">
+        </p>
+    </section>
+
+    <section class="slide">
+        <h2>Применение retryWhen</h2>
+        <p>
+            <img src="pictures/retry_when.png" width="95%">
+        </p>
+    </section>
+
+    <section class="slide">
+        <h2>Применение своих операторов</h2>
+        <p>
+            <img src="pictures/custom_operator.png" width="95%">
+        </p>
+    </section>
+
+    <section class="slide">
+        <h2>Минусы</h2>
+        <ul>
+            <li class="next">Высокий порог входа</li>
+            <li class="next">Легко выстрелить себе в ногу</li>
+        </ul>
+    </section>
+
     <div class="progress"></div>
 
     <script src="node_modules/shower-core/shower.min.js"></script>
-    <!-- Copyright © 2018 Yours Truly, Famous Inc. -->
 
 </body>
 </html>
