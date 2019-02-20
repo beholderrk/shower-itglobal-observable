@@ -58,3 +58,13 @@ consumersSub.pipe(
     })
 ).subscribe();
 
+
+
+someSubject = new Subject();
+someSubject.subscribe(someObserver);
+
+someSubject.next(1);
+someSubject.next(2);
+
+someObservable.subscribe(someSubject);
+

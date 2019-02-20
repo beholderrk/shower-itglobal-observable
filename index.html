@@ -116,27 +116,72 @@
     </section>
 
     <section class="slide">
+        <h2 class="shout">Сущности ReactiveX</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Observer и Observable</h2>
+        <ul>
+            <li>Observable <span class="comment">(Наблюдаемое)</span></li>
+            <li>Observer <span class="comment">(Наблюдатель)</span></li>
+        </ul>
+
+        <p><mark>Observer</mark> подписывается на оповещения <mark>Observable</mark></p>
+        <p><mark>Observable</mark> оповещает всех своих <mark>Observer</mark>-ов</p>
+    </section>
+
+    <section class="slide">
+        <h2>Observer</h2>
+        <pre>
+            <code>IObserver {</code>
+            <code class="next">    onNext(value);</code>
+            <code class="next">    onError(error);</code>
+            <code class="next">    onCompleted();</code>
+            <code>}</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Observable</h2>
+        <pre>
+            <code>IObservable {</code>
+            <code>    subscribe(IObserver observer);</code>
+            <code>}</code>
+        </pre>
+        <p class="next"><img src="pictures/observable_sub_example.png" width="60%"></p>
+    </section>
+
+    <section class="slide">
+        <h2>Subject</h2>
+        <pre>
+            <code>ISubject implements IObserver, IObservable {</code>
+            <code>}</code>
+        </pre>
+        <p class="next"><img src="pictures/subject_example.png" width="60%"></p>
+    </section>
+
+    <section class="slide">
         <h2 class="shout">Операторы</h2>
     </section>
 
     <section class="slide" id="rx-first-example">
         <h2>Могущество в операторах</h2>
         <pre>
-            <code>const searchUsers$ = <mark>fromEvent</mark>(document.querySelector("input"), "change")</code>
-            <code class="next">.pipe(</code>
-            <code class="next">    <mark>map</mark>(event => event.target.value),</code>
+            <code>const searchUsers$ = <mark>fromEvent</mark>(document.querySelector("#search"), "change")</code>
+            <code class="">.pipe(</code>
+            <code class="next">    <mark>map</mark>(event => event.target.<mark class="important">value</mark>),</code>
             <code class="next">    <mark>debounceTime</mark>(400),</code>
             <code class="next">    <mark>distinctUntilChanged</mark>(),</code>
-            <code class="next">    <mark>switchMap</mark>(search => getJson(`/users/?q=${search}`))</code>
-            <code class="next">);</code>
-            <code class="next">searchUsers$.subscribe();</code>
+            <code class="next">    <mark>switchMap</mark>(<mark class="important">search</mark> => getJson(`/users/?q=${<mark class="important">search</mark>}`))</code>
+            <code class="">);</code>
+            <code class="next">searchUsers$.subscribe(drawUsers);</code>
         </pre>
 
         <style>
             #rx-first-example pre { font-size: 0.7em; }
         </style>
     </section>
-    
+
     <section class="slide">
         <h2>Могущество в операторах</h2>
         <p>
@@ -150,7 +195,7 @@
             <img src="pictures/bufferToggle.PNG">
         </p>
     </section>
-    
+
     <section class="slide">
         <h2>Применение bufferToggle</h2>
         <p>
@@ -175,9 +220,22 @@
     <section class="slide">
         <h2>Минусы</h2>
         <ul>
-            <li class="next">Высокий порог входа</li>
+            <li class="next">Высокий порог входа (100+ операторов)</li>
             <li class="next">Легко выстрелить себе в ногу</li>
         </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Чего я не касался</h2>
+        <ul>
+            <li class="next">Hot & Cold Observables</li>
+            <li class="next">Производительность, параллелизм, concurrency</li>
+            <li class="next">BehaviorSubject PublishSubject ReplaySubject и другие</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">Спасибо!</h2>
     </section>
 
     <div class="progress"></div>
